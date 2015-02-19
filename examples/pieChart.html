@@ -72,8 +72,9 @@
         setInterval(function() {
             testdata2[0].y = Math.floor(Math.random() * 10);
             testdata2[1].y = Math.floor(Math.random() * 10);
+            console.log(testdata2);
             chart.update();
-        }, 4000);
+        }, 10000);
 
         return chart;
     });

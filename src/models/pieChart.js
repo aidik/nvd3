@@ -135,14 +135,14 @@ nv.models.pieChart = function() {
                     .datum(data)
                     .call(legend);
 
-                if ( margin.top != legend.height()) {
-                    margin.top = legend.height();
+                if ( margin.bottom != legend.height()) {
+                    margin.bottom = legend.height();
                     availableHeight = (height || parseInt(container.style('height')) || 400)
                         - margin.top - margin.bottom;
                 }
 
                 wrap.select('.nv-legendWrap')
-                    .attr('transform', 'translate(0,' + (-margin.top) +')');
+                    .attr('transform', 'translate(0,' + (availableHeight) +')');
             }
             wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 

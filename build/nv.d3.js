@@ -1,4 +1,4 @@
-/* nvd3 version 1.7.1(https://github.com/novus/nvd3) 2015-02-08 */
+/* nvd3 version 1.7.1(https://github.com/novus/nvd3) 2015-02-19 */
 (function(){
 
 // set up main nv object on window
@@ -6,7 +6,7 @@ var nv = window.nv || {};
 window.nv = nv;
 
 // the major global objects under the nv namespace
-nv.dev = false; //set false when in production
+nv.dev = true; //set false when in production
 nv.tooltip = nv.tooltip || {}; // For the tooltip system
 nv.utils = nv.utils || {}; // Utility subsystem
 nv.models = nv.models || {}; //stores all the possible models/components
@@ -9140,14 +9140,14 @@ nv.models.pieChart = function() {
                     .datum(data)
                     .call(legend);
 
-                if ( margin.top != legend.height()) {
-                    margin.top = legend.height();
+                if ( margin.bottom != legend.height()) {
+                    margin.bottom = legend.height();
                     availableHeight = (height || parseInt(container.style('height')) || 400)
                         - margin.top - margin.bottom;
                 }
 
                 wrap.select('.nv-legendWrap')
-                    .attr('transform', 'translate(0,' + (-margin.top) +')');
+                    .attr('transform', 'translate(0,' + (availableHeight) +')');
             }
             wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
