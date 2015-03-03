@@ -168,14 +168,14 @@ nv.models.stackedAreaChart = function() {
                 legend.width(legendWidth);
                 g.select('.nv-legendWrap').datum(data).call(legend);
 
-                if ( margin.top != legend.height()) {
-                    margin.top = legend.height();
+                if ( margin.bottom != legend.height()) {
+                    margin.bottom = legend.height();
                     availableHeight = (height || parseInt(container.style('height')) || 400)
-                        - margin.top - margin.bottom;
+                        - margin.top - margin.bottom - 20;
                 }
 
                 g.select('.nv-legendWrap')
-                    .attr('transform', 'translate(' + (availableWidth-legendWidth) + ',' + (-margin.top) +')');
+                    .attr('transform', 'translate(' + (availableWidth-legendWidth) + ',' + (availableHeight) +')');
             }
 
             // Controls
