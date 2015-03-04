@@ -161,20 +161,21 @@ nv.models.lineChart = function() {
 
             // Legend
             if (showLegend) {
-                legend.width(availableWidth);
+                legend.width(margin.left + availableWidth);
+                legend.margin({top: 25});
 
                 g.select('.nv-legendWrap')
                     .datum(data)
                     .call(legend);
 
-                if ( margin.bottom != legend.height() + 20) {
-                    margin.bottom = legend.height() + 20;
+                if ( margin.bottom != legend.height() + 25) {
+                    margin.bottom = legend.height() + 25;
                     availableHeight = (height || parseInt(container.style('height')) || 400)
                         - margin.top - margin.bottom;
                 }
 
                 wrap.select('.nv-legendWrap')
-                    .attr('transform', 'translate(0,' + (availableHeight + 20) +')')
+                    .attr('transform', 'translate(0,' + (availableHeight) +')')
             }
 
             wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');

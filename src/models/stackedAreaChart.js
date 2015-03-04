@@ -165,17 +165,20 @@ nv.models.stackedAreaChart = function() {
             if (showLegend) {
                 var legendWidth = (showControls) ? availableWidth - controlWidth : availableWidth;
 
-                legend.width(legendWidth);
+                legend.width(margin.left + legendWidth);
+                legend.margin({top: 25});
+
                 g.select('.nv-legendWrap').datum(data).call(legend);
 
-                if ( margin.bottom != legend.height()) {
-                    margin.bottom = legend.height();
+                if ( margin.bottom != legend.height() + 25) {
+                    margin.bottom = legend.height() + 25;
                     availableHeight = (height || parseInt(container.style('height')) || 400)
-                        - margin.top - margin.bottom - 20;
+                        - margin.top - margin.bottom;
                 }
 
                 g.select('.nv-legendWrap')
                     .attr('transform', 'translate(' + (availableWidth-legendWidth) + ',' + (availableHeight) +')');
+
             }
 
             // Controls
