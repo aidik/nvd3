@@ -326,9 +326,8 @@ nv.models.stackedAreaChart = function() {
 
 
                 state.style = stacked.style();
-                dispatch.stateChange(state);
-
                 chart.update();
+                dispatch.stateChange(state);
             });
 
             interactiveLayer.dispatch.on('elementMousemove', function(e) {

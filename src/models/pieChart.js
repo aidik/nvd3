@@ -156,8 +156,8 @@ nv.models.pieChart = function() {
                 for (var key in newState) {
                     state[key] = newState[key];
                 }
-                dispatch.stateChange(state);
                 chart.update();
+                dispatch.stateChange(state);
             });
 
             pie.dispatch.on('elementMouseout.tooltip', function(e) {

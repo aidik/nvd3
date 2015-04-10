@@ -239,8 +239,8 @@ nv.models.lineChart = function() {
             legend.dispatch.on('stateChange', function(newState) {
                 for (var key in newState)
                     state[key] = newState[key];
-                dispatch.stateChange(state);
                 chart.update();
+                dispatch.stateChange(state);
             });
 
             interactiveLayer.dispatch.on('elementMousemove', function(e) {
