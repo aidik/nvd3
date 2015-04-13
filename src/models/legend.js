@@ -148,8 +148,8 @@ nv.models.legend = function() {
 
                 //position legend as far right as possible within the total width
                 if (rightAlign) {
-                    console.log("width: " + width);
-                    console.log("legendWidth: " + legendWidth);
+                    //console.log("width: " + width);
+                    //console.log("legendWidth: " + legendWidth);
 
                     g.attr('transform', 'translate(' + (width/2 - legendWidth/2) + ',' + margin.top + ')');
                 }
