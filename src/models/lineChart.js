@@ -92,11 +92,16 @@ nv.models.lineChart = function() {
                     - margin.top - margin.bottom;
 
 
-            chart.update = function() {
+            chart.update = function(callback) {
                 if (duration === 0)
                     container.call(chart);
                 else
-                    container.transition().duration(duration).call(chart)
+                    container.transition().duration(duration).call(chart);
+
+                if (callback)
+                    {
+                        callback();
+                    }
             };
             chart.container = this;
 
@@ -239,8 +244,11 @@ nv.models.lineChart = function() {
             legend.dispatch.on('stateChange', function(newState) {
                 for (var key in newState)
                     state[key] = newState[key];
-                chart.update();
-                dispatch.stateChange(state);
+
+                chart.update(function() {
+                    //console.log(state.disabled);
+                    dispatch.stateChange(state); });
+                //dispatch.stateChange(state);
             });
 
             interactiveLayer.dispatch.on('elementMousemove', function(e) {

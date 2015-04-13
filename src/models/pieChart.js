@@ -79,7 +79,13 @@ nv.models.pieChart = function() {
                     - margin.top - margin.bottom
                 ;
 
-            chart.update = function() { container.transition().call(chart); };
+            chart.update = function(callback) {
+                    container.transition().call(chart);
+                    if (callback)
+                    {
+                        callback();
+                    }
+                };
             chart.container = this;
 
             state.setter(stateSetter(data), chart.update)
@@ -156,8 +162,10 @@ nv.models.pieChart = function() {
                 for (var key in newState) {
                     state[key] = newState[key];
                 }
-                chart.update();
-                dispatch.stateChange(state);
+                chart.update(function() {
+                    //console.log(state.disabled);
+                    dispatch.stateChange(state); });
+                //dispatch.stateChange(state);
             });
 
             pie.dispatch.on('elementMouseout.tooltip', function(e) {

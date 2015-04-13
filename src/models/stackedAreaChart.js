@@ -101,7 +101,15 @@ nv.models.stackedAreaChart = function() {
                 availableHeight = (height || parseInt(container.style('height')) || 400)
                     - margin.top - margin.bottom;
 
-            chart.update = function() { container.transition().duration(duration).call(chart); };
+            chart.update = function(callback) {
+                container.transition().duration(duration).call(chart);
+
+                if (callback)
+                {
+                    callback();
+                }
+
+            };
             chart.container = this;
 
             state
@@ -309,8 +317,9 @@ nv.models.stackedAreaChart = function() {
             legend.dispatch.on('stateChange', function(newState) {
                 for (var key in newState)
                     state[key] = newState[key];
-                dispatch.stateChange(state);
-                chart.update();
+                chart.update(function() {
+                    //console.log(state.disabled);
+                    dispatch.stateChange(state); });
             });
 
             controls.dispatch.on('legendClick', function(d,i) {
